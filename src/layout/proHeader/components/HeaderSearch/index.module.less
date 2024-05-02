@@ -1,0 +1,34 @@
+// @import '~antd/es/style/themes/default.less';
+/* stylelint-disable selector-class-pattern */
+.headerSearch {
+  // & > .ant-select {
+  //   border: none;
+  // }
+  // & > .ant-select > .ant-select-selector {
+  //   border: none;
+  // }
+  .input {
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+    background: transparent;
+    border-radius: 0;
+    transition: width 0.3s, margin-left 0.3s;
+
+    input {
+      padding-right: 0;
+      padding-left: 0;
+      border: 0;
+      box-shadow: none !important;
+    }
+    // &,
+    // &:hover,
+    // &:focus {
+    //   // border-bottom: 1px solid @border-color-base;
+    // }
+    &.show {
+      width: 210px;
+      margin-left: 8px;
+    }
+  }
+}

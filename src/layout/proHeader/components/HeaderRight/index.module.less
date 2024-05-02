@@ -1,0 +1,49 @@
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+
+.header {
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 52px;
+    transition: all 0.3s;
+
+    .ant-badge-count-sm {
+      padding: 0 2px;
+    }
+  }
+
+  &__action-icons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__action-icon {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  > span {
+    vertical-align: middle;
+  }
+
+  &:hover {
+    background: transparent;
+  }
+
+  &:global(.opened) {
+    background: @pro-header-hover-bg;
+  }
+}
