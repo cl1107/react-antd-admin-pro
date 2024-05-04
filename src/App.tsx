@@ -23,11 +23,7 @@ const App = () => {
     return <Loading />;
   }
 
-  return (
-    <Watermark content="rsbuild-react-admin-pro">
-      <AuthRouter>{element}</AuthRouter>
-    </Watermark>
-  );
+  return <AuthRouter>{element}</AuthRouter>;
 };
 
 export default App;

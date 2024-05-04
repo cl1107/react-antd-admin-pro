@@ -1,0 +1,77 @@
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 132deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.login-card {
+  min-width: 400px;
+  min-height: 281px;
+  background: rgba(233, 231, 230, 0.31);
+  border: 1px solid rgba(163, 128, 21, 0.16);
+  border-radius: 8px;
+
+  &__inner {
+    position: relative;
+    margin: 12px;
+    border-radius: 8px;
+
+    &::before {
+      position: absolute;
+      top: -1%;
+      left: -1%;
+      z-index: 1;
+      width: 102%;
+      height: 102%;
+      background-image: linear-gradient(var(--rotate), #eae2f7, transparent, #eae2f7);
+      border-radius: 8px;
+      animation: spin 4.5s linear infinite;
+      content: '';
+    }
+
+    &::after {
+      position: absolute;
+      top: 30px;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      width: 106%;
+      height: 100%;
+      margin: 0 auto;
+      background-image: linear-gradient(var(--rotate), #d9effc, #ed7ead, #ebf190);
+      transform: scale(0.8);
+      opacity: 1;
+      filter: blur(calc(281px / 6));
+      transition: opacity 0.5s;
+      animation: spin 2.5s linear infinite;
+      content: '';
+    }
+
+    & .login-form-title {
+      margin-bottom: 24px;
+      color: #000;
+      font-weight: bold;
+      font-size: 26px;
+      text-align: center;
+      background: linear-gradient(180deg, #84cffb 0%, #4096ff 100%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    & .login-content {
+      z-index: 2;
+      position: relative;
+      background: #ece9e9ee;
+    }
+  }
+}

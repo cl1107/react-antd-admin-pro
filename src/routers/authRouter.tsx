@@ -8,7 +8,7 @@ const AuthRouter = (props) => {
   if (!route?.auth) return props.children;
 
   const { token } = getLocalStorage('token') || { token: null };
-  if (!token) return <Navigate to="/signin" replace />;
+  if (!token) return <Navigate to="/signIn" replace />;
 
   // * 后端返回有权限路由列表 暂时硬编码 需要结合 proSecNav组件中的menuItems
   const routerList = [

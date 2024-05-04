@@ -1,12 +1,9 @@
-import React from 'react'
-
-import { useLocation, useNavigate } from 'react-router-dom'
-
-import { Button } from 'antd'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
 
 const NoMatch = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div style={{ margin: 30, textAlign: 'center' }}>
@@ -18,7 +15,7 @@ const NoMatch = () => {
         返回
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default NoMatch
+export default NoMatch;
