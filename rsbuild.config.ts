@@ -19,6 +19,7 @@ export default defineConfig({
       js: process.env.NODE_ENV === 'production' ? false : 'source-map',
       css: false,
     },
+    assetPrefix: '/rspack-rsbuild-react-antd-admin-pro',
   },
   source: {
     define: {
