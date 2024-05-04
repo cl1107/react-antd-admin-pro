@@ -1,5 +1,5 @@
 import { StyleProvider } from '@ant-design/cssinjs';
-import { ConfigProvider, theme } from 'antd';
+import { ConfigProvider } from 'antd';
 import 'antd/dist/reset.css';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
@@ -19,7 +19,7 @@ const ThemeIndex = () => {
     iconPrefixCls: 'cl-icon',
   });
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/rspack-rsbuild-react-antd-admin-pro/">
       <StyleProvider hashPriority="high">
         <ConfigProvider
           theme={{
