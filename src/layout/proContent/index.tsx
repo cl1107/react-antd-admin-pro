@@ -1,4 +1,4 @@
-import { useTabsStore } from '@/store/useTabsStore';
+import { useGlobalStore } from '@/store';
 import { getKeyName } from '@/utils/publicFn';
 import { VerticalAlignTopOutlined } from '@ant-design/icons';
 import { FloatButton, Layout, Space, theme } from 'antd';
@@ -11,7 +11,7 @@ const { Content, Footer } = Layout;
 
 const ProContent = () => {
   const [tabActiveKey, setTabActiveKey] = useState('home');
-  const { activeKey, panes } = useTabsStore();
+  const { activeKey, panes } = useGlobalStore();
   const [panesItem, setPanesItem] = useState({
     title: '',
     content: null,

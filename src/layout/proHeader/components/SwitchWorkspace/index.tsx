@@ -4,7 +4,8 @@ import { Dropdown, Menu, Spin } from 'antd';
 import { useReducer } from 'react';
 // import './index.less';
 // import clsx from 'clsx';
-import { defaultMenus, testMenus, useTabsStore } from '@/store/useTabsStore';
+import { useGlobalStore } from '@/store';
+import { defaultMenus, testMenus } from '@/store/tabsSlice';
 import { findNestedChildrenFirstKeyAndLabel } from '@/utils/menu';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
@@ -30,7 +31,7 @@ export const SwitchWorkspace = () => {
     setMenus,
     setActiveKey,
     setPanes,
-  } = useTabsStore((state) => ({
+  } = useGlobalStore((state) => ({
     workspaces: state.workspaces,
     activeWorkspace: state.activeWorkspace,
     panes: state.panes,

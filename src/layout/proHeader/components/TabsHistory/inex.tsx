@@ -1,5 +1,5 @@
 import TabTools from '@/layouts/basicLayout/components/TabTools';
-import { useTabsStore } from '@/store/useTabsStore';
+import { useGlobalStore } from '@/store';
 import { CloseCircleFilled } from '@ant-design/icons';
 import { useSize } from 'ahooks';
 import { Tabs } from 'antd';
@@ -13,7 +13,7 @@ const OperationsSlot = {
 };
 export const TabsHistory = () => {
   const navigate = useNavigate();
-  const { activeKey, setActiveKey, panes, setPanes, removeTab } = useTabsStore();
+  const { activeKey, setActiveKey, panes, setPanes, removeTab } = useGlobalStore();
 
   /**
    * tabs编辑

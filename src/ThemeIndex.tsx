@@ -23,14 +23,8 @@ const ThemeIndex = () => {
       <StyleProvider hashPriority="high">
         <ConfigProvider
           theme={{
-            algorithm:
-              myTheme === 'light'
-                ? [theme.defaultAlgorithm, theme.compactAlgorithm]
-                : [theme.darkAlgorithm, theme.compactAlgorithm],
             token: myTheme === 'light' ? myThemes.lightTheme : myThemes.darkTheme,
           }}
-          componentSize="middle"
-          input={{ autoComplete: 'off' }}
           prefixCls="cl-ant"
           iconPrefixCls="cl-icon"
         >

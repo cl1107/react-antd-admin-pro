@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // import { StickyContainer, Sticky } from 'react-sticky-ts'
 import { MyErrorBoundary } from '@/components/stateful';
 import Loading from '@/components/stateless/Loading';
-import { useTabsStore } from '@/store/useTabsStore';
+import { useGlobalStore } from '@/store';
 import { DownOutlined, SyncOutlined } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import { Sticky, StickyContainer } from 'react-sticky';
 import Fullscreen from '../fullscreen';
 
 const ProTabs = (props) => {
-  const { activeKey, setActiveKey, panes, setPanes, removeTab } = useTabsStore();
+  const { activeKey, setActiveKey, panes, setPanes, removeTab } = useGlobalStore();
   const [isReload, setIsReload] = useState(false);
   const pathRef = useRef('');
 
@@ -47,6 +47,7 @@ const ProTabs = (props) => {
     });
   }, [pathname]);
 
+  //TODO:重构, 这样使用useEffect不合理, setPanes还是要通过事件去触发,而不是通过监听pathname和tabActiveKey来触发
   useEffect(() => {
     const newPath = pathname + search;
 

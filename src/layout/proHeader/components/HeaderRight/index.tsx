@@ -6,7 +6,7 @@ import { UserInfo } from '../UserInfo';
 // import { SwitchThemeButton } from '@/components/SwitchThemeButton';
 import LanguageSwitcher from '@/components/stateless/LanguageSwitcher';
 import Fullscreen from '@/layout/fullscreen';
-import { useTabsStore } from '@/store/useTabsStore';
+import { useGlobalStore } from '@/store';
 import { useProThemeContext } from '@/theme/hooks';
 import { findMenuItem } from '@/utils/menu';
 import { GithubOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
@@ -25,7 +25,7 @@ const highlightText = (text: string, searchText: string) => {
 
 export const HeaderRight = () => {
   const navigate = useNavigate();
-  const menus = useTabsStore((state) => state.menus);
+  const menus = useGlobalStore((state) => state.menus);
 
   const [options, setOptions] = useState<{ label: JSX.Element; value: string }[]>([]);
   const [isFocus, setIsFocus] = useState(false);

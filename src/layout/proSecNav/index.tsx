@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useTabsStore } from '@/store/useTabsStore';
+import { useGlobalStore } from '@/store';
 import styles from './index.module.less';
 
 const pathSubmenu = {
@@ -13,12 +13,9 @@ const pathSubmenu = {
 };
 
 const ProSecNav = () => {
-  const menus = useTabsStore((state) => state.menus);
+  const menus = useGlobalStore((state) => state.menus);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const redirectTo = (path) => {
-    navigate(path);
-  };
 
   const [selectedKeys, setSelectedKeys] = useState(['home']);
 
@@ -38,7 +35,7 @@ const ProSecNav = () => {
     setOpenKeys(isOpenChange ? openKeys : pathSubmenu[pathname] ?? openKeys);
   }, [pathname, openKeys, isOpenChange]);
 
-  const onOpenChange = (keys) => {
+  const onOpenChange = (keys: string[]) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     setIsOpenChange(true);
     if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
@@ -48,8 +45,8 @@ const ProSecNav = () => {
     }
   };
 
-  const onSelect = ({ key }) => {
-    redirectTo(key);
+  const onSelect = ({ key }: { key: string }) => {
+    navigate(key);
     setIsOpenChange(false);
   };
 

@@ -1,4 +1,4 @@
-import { MenusItem } from '@/store/useTabsStore';
+import { MenusItem } from '@/store/tabsSlice';
 
 /**
  * 菜单搜索

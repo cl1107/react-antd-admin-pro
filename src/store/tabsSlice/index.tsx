@@ -1,7 +1,7 @@
 import Home from '@/pages/home';
 import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { create } from 'zustand';
+import { StateCreator } from 'zustand';
 
 import {
   ApartmentOutlined,
@@ -13,6 +13,7 @@ import {
   QrcodeOutlined,
   QuestionCircleOutlined,
 } from '@ant-design/icons';
+import { UserInfoState } from '../userInfoSlice';
 
 export interface PanesItem {
   label: string;
@@ -95,7 +96,9 @@ export const testMenus = [
   { label: 'demo', key: '/demo', icon: <GlobalOutlined /> },
 ];
 
-export const useTabsStore = create<TabsState>((set) => ({
+export const createTabsSlice: StateCreator<TabsState & UserInfoState, [], [], TabsState> = (
+  set,
+) => ({
   activeKey: '',
   setActiveKey: (key) => set({ activeKey: key }),
   panes: [
@@ -133,4 +136,4 @@ export const useTabsStore = create<TabsState>((set) => ({
     });
     callbackFun();
   },
-}));
+});

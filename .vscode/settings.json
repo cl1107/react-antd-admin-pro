@@ -1,0 +1,9 @@
+{
+  "javascript.suggest.paths": true,
+  "typescript.suggest.paths": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+  "cSpell.words": ["partialize", "zustand"]
+}
