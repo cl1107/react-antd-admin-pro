@@ -19,7 +19,7 @@ const ThemeIndex = () => {
     iconPrefixCls: 'cl-icon',
   });
   return (
-    <BrowserRouter basename="/rspack-rsbuild-react-antd-admin-pro/">
+    <BrowserRouter basename="/react-antd-admin-pro/">
       <StyleProvider hashPriority="high">
         <ConfigProvider
           theme={{

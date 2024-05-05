@@ -1,4 +1,3 @@
-import { Watermark } from 'antd';
 import { useEffect, useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 import Loading from './components/stateless/Loading';
@@ -9,7 +8,7 @@ import AuthRouter from './routers/authRouter';
 const App = () => {
   // const { i18n } = useTranslation()
   const [loading, setLoading] = useState(true);
-  const asyncCall = () => new Promise<void>((resolve) => setTimeout(() => resolve(), 1500));
+  const asyncCall = () => new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
   useEffect(() => {
     // sentryInit();
     asyncCall()
