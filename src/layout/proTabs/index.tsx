@@ -1,5 +1,5 @@
-import { Button, Dropdown, Tabs, theme } from 'antd';
-import { useEffect, useRef, useState } from 'react';
+import { Button, Dropdown, Tabs, TabsProps, theme } from 'antd';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // import { StickyContainer, Sticky } from 'react-sticky-ts'
 import { MyErrorBoundary } from '@/components/stateful';
@@ -11,14 +11,15 @@ import { useTranslation } from 'react-i18next';
 import { Sticky, StickyContainer } from 'react-sticky';
 import Fullscreen from '../fullscreen';
 
-const ProTabs = (props) => {
+const ProTabs = () => {
   const { activeKey, setActiveKey, panes, setPanes, removeTab } = useGlobalStore();
+  console.log(panes, 'panes');
   const [isReload, setIsReload] = useState(false);
-  const pathRef = useRef('');
+  // const pathRef = useRef('');
 
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { panesItem, tabActiveKey } = props;
+  // const { panesItem, tabActiveKey } = props;
   const { pathname, search } = useLocation();
   const fullPath = pathname + search;
 
@@ -26,9 +27,9 @@ const ProTabs = (props) => {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  const renderTabBar = (_props, DefaultTabBar) => (
+  const renderTabBar = (_props: TabsProps, DefaultTabBar: React.ComponentType<TabsProps>) => (
     <Sticky topOffset={40} relative>
-      {({ style }) => (
+      {({ style }: { style: React.CSSProperties }) => (
         <DefaultTabBar
           key={nanoid()}
           {..._props}
@@ -40,53 +41,28 @@ const ProTabs = (props) => {
   );
 
   useEffect(() => {
-    document.querySelector('#container').scrollTo({
+    document.querySelector('#container')?.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
   }, [pathname]);
 
-  //TODO:重构, 这样使用useEffect不合理, setPanes还是要通过事件去触发,而不是通过监听pathname和tabActiveKey来触发
-  useEffect(() => {
-    const newPath = pathname + search;
-
-    if (!panesItem.path || panesItem.path === pathRef.current) return;
-
-    pathRef.current = newPath;
-
-    const index = panes.findIndex((item) => item.key === panesItem.key);
-    setActiveKey(tabActiveKey);
-
-    if (!panesItem.key || (index > -1 && newPath === panes[index].path)) {
-      return;
-    }
-
-    if (index > -1) {
-      panes[index].path = newPath;
-      setPanes(panes);
-      return;
-    }
-    setPanes([...panes, panesItem]);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname, tabActiveKey]);
-
-  const onChange = (key) => {
+  const onChange = (key: string) => {
     setActiveKey(key);
   };
 
   // tab点击
-  const onTabClick = (targetKey) => {
+  const onTabClick = (targetKey: string) => {
     const { path } = panes.filter((item) => item.key === targetKey)[0];
     navigate(path);
   };
 
-  const onTabScroll = ({ direction }) => {
-    console.log('direction', direction);
-  };
+  // const onTabScroll = ({ direction }) => {
+  //   console.log('direction', direction);
+  // };
 
-  const onEdit = (targetKey, action) => {
+  const onEdit = (targetKey: string, action: string) => {
     if (action === 'remove') removeTab(targetKey);
   };
 
@@ -98,7 +74,7 @@ const ProTabs = (props) => {
     }, 1000);
   };
 
-  const onTabContextMenu = (rightMenuKey) => {
+  const onTabContextMenu = (rightMenuKey: string) => {
     if (rightMenuKey === 'all') {
       const filterPanes = panes.filter((pane) => pane.key === '/');
       setPanes(filterPanes);
@@ -134,7 +110,7 @@ const ProTabs = (props) => {
         type="editable-card"
         onChange={onChange}
         onTabClick={onTabClick}
-        onTabScroll={onTabScroll}
+        // onTabScroll={onTabScroll}
         onEdit={onEdit}
         renderTabBar={renderTabBar}
         tabBarStyle={{

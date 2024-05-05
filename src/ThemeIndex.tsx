@@ -1,9 +1,8 @@
 import { StyleProvider } from '@ant-design/cssinjs';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import 'antd/dist/reset.css';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import { BrowserRouter } from 'react-router-dom';
 import './styles/reset.css';
 
 import App from './App';
@@ -14,24 +13,24 @@ dayjs.locale('zh-cn');
 
 const ThemeIndex = () => {
   const { myTheme } = useProThemeContext();
+  console.log(myTheme);
   ConfigProvider.config({
     prefixCls: 'cl-ant',
     iconPrefixCls: 'cl-icon',
   });
   return (
-    <BrowserRouter basename="/react-antd-admin-pro/">
-      <StyleProvider hashPriority="high">
-        <ConfigProvider
-          theme={{
-            token: myTheme === 'light' ? myThemes.lightTheme : myThemes.darkTheme,
-          }}
-          prefixCls="cl-ant"
-          iconPrefixCls="cl-icon"
-        >
-          <App />
-        </ConfigProvider>
-      </StyleProvider>
-    </BrowserRouter>
+    <StyleProvider hashPriority="high">
+      <ConfigProvider
+        theme={{
+          token: myTheme === 'light' ? myThemes.lightTheme : myThemes.darkTheme,
+          algorithm: myTheme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm,
+        }}
+        prefixCls="cl-ant"
+        iconPrefixCls="cl-icon"
+      >
+        <App />
+      </ConfigProvider>
+    </StyleProvider>
   );
 };
 

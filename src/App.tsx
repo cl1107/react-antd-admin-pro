@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import Loading from './components/stateless/Loading';
 import rootRouter from './routers';
 import AuthRouter from './routers/authRouter';
+
 // import { sentryInit } from './utils';
 
 const App = () => {

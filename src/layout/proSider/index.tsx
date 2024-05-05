@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-import { Layout } from 'antd'
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { Layout } from 'antd';
+import React, { useState } from 'react';
 
-import styles from './index.module.less'
-
-const ProSider = (props) => {
-  const [collapsed, setCollapsed] = useState(false)
+const ProSider = ({ children }: { children: React.ReactNode }) => {
+  const [collapsed, setCollapsed] = useState(false);
 
   const onCollapse = () => {
-    setCollapsed(!collapsed)
-  }
+    setCollapsed(!collapsed);
+  };
 
   return (
     <Layout.Sider
@@ -19,10 +17,10 @@ const ProSider = (props) => {
       collapsible
       collapsed={collapsed}
       trigger={null}
-      className={styles.sider}
+      className="h-full"
     >
-      {props.children}
-      <div className={styles.proLink} onClick={onCollapse}>
+      {children}
+      <div className={'h-10 lh-10 px-4 mb-1 cursor-pointer'} onClick={onCollapse}>
         {collapsed ? (
           <MenuUnfoldOutlined style={{ fontSize: '16px', color: '#08c', cursor: 'pointer' }} />
         ) : (
@@ -30,7 +28,7 @@ const ProSider = (props) => {
         )}
       </div>
     </Layout.Sider>
-  )
-}
+  );
+};
 
-export default ProSider
+export default ProSider;

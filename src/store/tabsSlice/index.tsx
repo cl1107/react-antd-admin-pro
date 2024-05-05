@@ -13,6 +13,7 @@ import {
   QrcodeOutlined,
   QuestionCircleOutlined,
 } from '@ant-design/icons';
+import { uniqBy } from 'lodash-es';
 import { UserInfoState } from '../userInfoSlice';
 
 export interface PanesItem {
@@ -41,6 +42,7 @@ export interface TabsState {
   activeWorkspace: string;
   setActiveWorkspace: (workspace: string) => void;
   removeTab: (targetKey: string, callbackFun?: () => void) => void;
+  addTab: (pane: PanesItem) => void;
 }
 
 export const defaultMenus = [
@@ -99,7 +101,7 @@ export const testMenus = [
 export const createTabsSlice: StateCreator<TabsState & UserInfoState, [], [], TabsState> = (
   set,
 ) => ({
-  activeKey: '',
+  activeKey: '/',
   setActiveKey: (key) => set({ activeKey: key }),
   panes: [
     {
@@ -121,7 +123,7 @@ export const createTabsSlice: StateCreator<TabsState & UserInfoState, [], [], Ta
   setWorkspaces: (workspaces) => set({ workspaces }),
   activeWorkspace: 'default',
   setActiveWorkspace: (workspace) => set({ activeWorkspace: workspace }),
-  removeTab: (targetKey, callbackFun = () => {}) => {
+  removeTab: (targetKey, callbackFun) => {
     set((state) => {
       const delIndex = state.panes.findIndex((item) => item.key === targetKey);
       const filterPanes = state.panes.filter((pane) => pane.key !== targetKey);
@@ -134,6 +136,14 @@ export const createTabsSlice: StateCreator<TabsState & UserInfoState, [], [], Ta
       navigate(nextPath);
       return { activeKey: nextPath, panes: filterPanes };
     });
-    callbackFun();
+    callbackFun?.();
+  },
+  addTab: (pane) => {
+    set((state) => {
+      const tmp = [...state.panes, pane];
+      const newPanes = uniqBy(tmp, 'key');
+      debugger;
+      return { panes: newPanes, activeKey: pane.key };
+    });
   },
 });

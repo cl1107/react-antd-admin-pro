@@ -11,6 +11,7 @@ const AuthRouter = (props) => {
   if (!token) return <Navigate to="/signIn" replace />;
 
   // * 后端返回有权限路由列表 暂时硬编码 需要结合 proSecNav组件中的menuItems
+  //TODO:初始化activeKey和panes，目前是写死初始化为/，home组件
   const routerList = [
     '/',
     '/home',
