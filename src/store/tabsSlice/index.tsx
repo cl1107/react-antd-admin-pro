@@ -43,6 +43,10 @@ export interface TabsState {
   setActiveWorkspace: (workspace: string) => void;
   removeTab: (targetKey: string, callbackFun?: () => void) => void;
   addTab: (pane: PanesItem) => void;
+  openKeys: React.Key[];
+  setOpenKeys: (openKeys: React.Key[]) => void;
+  selectedKeys: string[];
+  setSelectedKeys: (selectedKeys: string[]) => void;
 }
 
 export const defaultMenus = [
@@ -142,8 +146,11 @@ export const createTabsSlice: StateCreator<TabsState & UserInfoState, [], [], Ta
     set((state) => {
       const tmp = [...state.panes, pane];
       const newPanes = uniqBy(tmp, 'key');
-      debugger;
       return { panes: newPanes, activeKey: pane.key };
     });
   },
+  openKeys: [],
+  setOpenKeys: (openKeys) => set({ openKeys }),
+  selectedKeys: ['/'],
+  setSelectedKeys: (selectedKeys) => set({ selectedKeys }),
 });

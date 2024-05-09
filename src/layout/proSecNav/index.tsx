@@ -1,5 +1,4 @@
 import { Menu } from 'antd';
-import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useGlobalStore } from '@/store';
@@ -7,16 +6,18 @@ import { getKeyName } from '@/utils/publicFn';
 import styles from './index.module.less';
 
 const ProSecNav = () => {
-  const { menus, addTab } = useGlobalStore((state) => ({
-    menus: state.menus,
-    addTab: state.addTab,
-  }));
+  const { menus, addTab, openKeys, selectedKeys, setOpenKeys, setSelectedKeys } = useGlobalStore(
+    (state) => ({
+      menus: state.menus,
+      addTab: state.addTab,
+      openKeys: state.openKeys,
+      setOpenKeys: state.setOpenKeys,
+      selectedKeys: state.selectedKeys,
+      setSelectedKeys: state.setSelectedKeys,
+    }),
+  );
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  //TODO:提取到全局store， autoComplete组件需要使用
-  const [openKeys, setOpenKeys] = useState<React.Key[]>([]); // 左侧菜单默认展开的subMenu key
-  const [selectedKeys, setSelectedKeys] = useState(['/']);
 
   return (
     <Menu

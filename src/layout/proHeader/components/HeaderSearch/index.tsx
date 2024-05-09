@@ -1,6 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import type { AutoCompleteProps } from 'antd';
 import { AutoComplete } from 'antd';
+import type { DefaultOptionType } from 'antd/es/select';
 import clsx from 'clsx';
 import useMergedState from 'rc-util/es/hooks/useMergedState';
 import { useRef, useState } from 'react';
@@ -10,7 +11,7 @@ export type HeaderSearchProps = {
   onSearch?: (value?: string) => void;
   onChange?: (value?: string) => void;
   onVisibleChange?: (b: boolean) => void;
-  onSelect?: (value: any) => void;
+  onSelect?: (value: DefaultOptionType) => void;
   onBlur?: () => void;
   onFocus?: () => void;
   className?: string;

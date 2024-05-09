@@ -1,5 +1,5 @@
 import { Space, Switch } from 'antd';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import HeaderSearch from '../HeaderSearch';
 import { SwitchWorkspace } from '../SwitchWorkspace';
 import { UserInfo } from '../UserInfo';
@@ -9,6 +9,7 @@ import Fullscreen from '@/layout/fullscreen';
 import { useGlobalStore } from '@/store';
 import { useProThemeContext } from '@/theme/hooks';
 import { findMenuItem } from '@/utils/menu';
+import { getKeyName } from '@/utils/publicFn';
 import { GithubOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
@@ -25,8 +26,11 @@ const highlightText = (text: string, searchText: string) => {
 
 export const HeaderRight = () => {
   const navigate = useNavigate();
-  const menus = useGlobalStore((state) => state.menus);
 
+  const { menus, addTab } = useGlobalStore((state) => ({
+    menus: state.menus,
+    addTab: state.addTab,
+  }));
   const [options, setOptions] = useState<{ label: JSX.Element; value: string }[]>([]);
   const [isFocus, setIsFocus] = useState(false);
   const handleSearch = (value: string | undefined) => {
@@ -71,11 +75,19 @@ export const HeaderRight = () => {
     }
   };
   // 按下enter选中后跳转路由
-  // TODO:更改any
-  const handleSelect = (optionsParams: any) => {
-    if (optionsParams) {
+  const handleSelect = (optionsParams: { label: ReactElement }) => {
+    if (optionsParams && optionsParams.label) {
       if (optionsParams.label.props.to) {
         navigate(optionsParams.label.props.to);
+        const { tabKey, title, element, i18nKey } = getKeyName(optionsParams.label.props.to);
+        addTab({
+          label: title,
+          content: element,
+          key: tabKey,
+          closable: tabKey !== '/',
+          path: optionsParams.label.props.to,
+          i18nKey,
+        });
       } else if (optionsParams.label.props.href) {
         window.open(optionsParams.label.props.href, '_blank');
       }
@@ -99,6 +111,7 @@ export const HeaderRight = () => {
           className={`${styles.action}`}
           placeholder="菜单"
           options={options}
+          // @ts-expect-error 类型没搞定
           onSelect={handleSelect}
           onSearch={handleSearch}
           onBlur={() => {
