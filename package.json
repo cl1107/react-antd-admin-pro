@@ -12,9 +12,9 @@
     "@ant-design/cssinjs": "^1.20.0",
     "@ant-design/icons": "^5.3.7",
     "@tanstack/react-query": "^5.35.1",
-    "ahooks": "^3.7.11",
-    "antd": "^5.17.0",
-    "axios": "^1.6.8",
+    "ahooks": "^3.8.0",
+    "antd": "^5.18.3",
+    "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",
     "echarts": "^5.5.0",
@@ -43,21 +43,22 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.2.0",
-    "@rsbuild/core": "^0.6.13",
-    "@rsbuild/plugin-react": "^0.6.13",
+    "@eslint/js": "^9.5.0",
+    "@rsbuild/core": "^0.7.9",
+    "@rsbuild/plugin-less": "^0.7.9",
+    "@rsbuild/plugin-react": "^0.7.9",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.12.11",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
-    "@unocss/postcss": "^0.60.0",
-    "eslint": "^9.2.0",
+    "@unocss/postcss": "^0.61.0",
+    "eslint": "^9.5.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "4.6.2",
     "globals": "^15.1.0",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.8.0",
-    "unocss": "^0.60.0"
+    "typescript-eslint": "^7.13.1",
+    "unocss": "^0.61.0"
   }
 }
