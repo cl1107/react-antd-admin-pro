@@ -5,11 +5,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { MyErrorBoundary } from '@/components/stateful';
 import Loading from '@/components/stateless/Loading';
 import { useGlobalStore } from '@/store';
-import { DownOutlined, SyncOutlined } from '@ant-design/icons';
+import { AlignRightOutlined, SyncOutlined } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 import { useTranslation } from 'react-i18next';
 import { Sticky, StickyContainer } from 'react-sticky';
-import Fullscreen from '../fullscreen';
 
 const ProTabs = () => {
   const { activeKey, setActiveKey, panes, setPanes, removeTab } = useGlobalStore();
@@ -52,7 +51,7 @@ const ProTabs = () => {
     setActiveKey(key);
   };
 
-  // tab点击
+  // tab 点击
   const onTabClick = (targetKey: string) => {
     const { path } = panes.filter((item) => item.key === targetKey)[0];
     navigate(path);
@@ -126,22 +125,17 @@ const ProTabs = () => {
           // ),
           right: (
             <div className="flex items-center">
-              <Fullscreen ele="#fullScreen" placement="left" tips="主内容全屏" />
-              {panes.length > 2 ? (
-                <Dropdown
-                  menu={{
-                    items: tabRightMenu,
-                    onClick: ({ key }) => {
-                      onTabContextMenu(key);
-                    },
-                  }}
-                  trigger={['hover']}
-                >
-                  <Button type="link">
-                    More <DownOutlined />
-                  </Button>
-                </Dropdown>
-              ) : null}
+              <Dropdown
+                menu={{
+                  items: tabRightMenu,
+                  onClick: ({ key }) => {
+                    onTabContextMenu(key);
+                  },
+                }}
+                trigger={['hover', 'click']}
+              >
+                <Button type="link" icon={<AlignRightOutlined />}></Button>
+              </Dropdown>
             </div>
           ),
         }}

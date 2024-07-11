@@ -1,10 +1,8 @@
 import { LockOutlined } from '@ant-design/icons';
 import { Col, Form, Input, message, Modal, Progress, Row } from 'antd';
 import type { RuleObject } from 'antd/lib/form';
-import md5 from 'paj-md5.js';
 import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
-import { encryptPassword } from '@/utils/encrypt';
 
 const passwordStrengthTestMap = new Map([
   ['LOW', /^[a-zA-Z0-9\W_!@#$%^&*`~()-+=]{6,}$/],
@@ -31,7 +29,7 @@ export const ChangePassword: React.FC<{
   const [progress, setProgress] = useState<number>(0);
   const [strengthPolicy, setStrengthPolicy] = useState<string>('MEDIUM');
   const [tip, setTip] = useState<string>(
-    '数字、小写字母，大写字母或特殊字符中的任意两种组成，长度至少6位',
+    '数字、小写字母，大写字母或特殊字符中的任意两种组成，长度至少 6 位',
   );
 
   useEffect(() => {
@@ -128,7 +126,7 @@ export const ChangePassword: React.FC<{
       closable={!isPwdExpired}
       cancelText="取消"
       okText="确定"
-      width="700px"
+      width={800}
     >
       <Form
         form={form}
@@ -163,7 +161,7 @@ export const ChangePassword: React.FC<{
             onChange={handleChange}
           />
         </Form.Item>
-        <Row style={{ marginTop: -10, marginBottom: 16 }}>
+        <Row style={{ marginTop: -4, marginBottom: 4 }}>
           <Col offset={5}>
             <div>{tip}</div>
             <Row>
