@@ -1,5 +1,5 @@
 const darkTheme = {
-  colorPrimary: '#00b96b',
-}
+  colorPrimary: '#1677ff',
+};
 
-export default darkTheme
+export default darkTheme;
