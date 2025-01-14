@@ -13,7 +13,7 @@ const lazyLoad = (Component: React.LazyExoticComponent<() => JSX.Element>): Reac
 // 以下路由可根据需求另分成不同的文件维护
 // 结合 proSecNav组件中的menuItems
 
-const signIn = lazy(() => import('@/pages/signIn'));
+const SignIn = lazy(() => import('@/pages/signIn'));
 const Layout = lazy(() => import('@/layout'));
 const Home = lazy(() => import('@/pages/home'));
 const Demo = lazy(() => import('@/pages/demo'));
@@ -60,7 +60,7 @@ const rootRouter = [
     name: '登录',
     key: '/signIn',
     auth: false,
-    element: lazyLoad(signIn),
+    element: lazyLoad(SignIn),
   },
   {
     index: false,

@@ -17,7 +17,7 @@ const tailLayout = {
   wrapperCol: { offset: 0, span: 16 },
 };
 
-const signIn = () => {
+const SignIn = () => {
   const navigate = useNavigate();
   const updateUserInfo = useGlobalStore((state) => state.updateUserInfo);
 
@@ -88,4 +88,4 @@ const signIn = () => {
   );
 };
 
-export default signIn;
+export default SignIn;

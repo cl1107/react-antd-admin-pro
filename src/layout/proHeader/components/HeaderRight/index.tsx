@@ -12,8 +12,8 @@ import { findMenuItem } from '@/utils/menu';
 import { getKeyName } from '@/utils/publicFn';
 import { GithubOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/shallow';
 import styles from './index.module.less';
-
 const highlightText = (text: string, searchText: string) => {
   const highlightStr = `<span style="color:red">${searchText}</span>`;
   // new 出来一个正则表达式reg>根据动态数据变量来创建
@@ -27,10 +27,12 @@ const highlightText = (text: string, searchText: string) => {
 export const HeaderRight = () => {
   const navigate = useNavigate();
 
-  const { menus, addTab } = useGlobalStore((state) => ({
-    menus: state.menus,
-    addTab: state.addTab,
-  }));
+  const { menus, addTab } = useGlobalStore(
+    useShallow((state) => ({
+      menus: state.menus,
+      addTab: state.addTab,
+    })),
+  );
   const [options, setOptions] = useState<{ label: JSX.Element; value: string }[]>([]);
   const [isFocus, setIsFocus] = useState(false);
   const handleSearch = (value: string | undefined) => {

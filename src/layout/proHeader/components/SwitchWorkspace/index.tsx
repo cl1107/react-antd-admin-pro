@@ -8,8 +8,8 @@ import { useGlobalStore } from '@/store';
 import { defaultMenus, testMenus } from '@/store/tabsSlice';
 import { findNestedChildrenFirstKeyAndLabel } from '@/utils/menu';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/shallow';
 import styles from './index.module.less';
-
 // function loop(menuParam: PortalApi.MenuItem, parent?: PortalApi.MenuItem[0]) {
 //   for (let i = 0; i < menuParam.length; i++) {
 //     const menuItem = menuParam[i];
@@ -31,15 +31,17 @@ export const SwitchWorkspace = () => {
     setMenus,
     setActiveKey,
     setPanes,
-  } = useGlobalStore((state) => ({
-    workspaces: state.workspaces,
-    activeWorkspace: state.activeWorkspace,
-    panes: state.panes,
-    setActiveWorkspace: state.setActiveWorkspace,
-    setMenus: state.setMenus,
-    setActiveKey: state.setActiveKey,
-    setPanes: state.setPanes,
-  }));
+  } = useGlobalStore(
+    useShallow((state) => ({
+      workspaces: state.workspaces,
+      activeWorkspace: state.activeWorkspace,
+      panes: state.panes,
+      setActiveWorkspace: state.setActiveWorkspace,
+      setMenus: state.setMenus,
+      setActiveKey: state.setActiveKey,
+      setPanes: state.setPanes,
+    })),
+  );
   const [spinning, toggleSpinning] = useReducer((x) => !x, false);
 
   const workspaceName = workspaceList.find((item) => item.code === workspaceKey)?.label;

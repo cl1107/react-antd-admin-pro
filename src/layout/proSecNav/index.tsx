@@ -3,18 +3,18 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useGlobalStore } from '@/store';
 import { getKeyName } from '@/utils/publicFn';
+import { useShallow } from 'zustand/shallow';
 import styles from './index.module.less';
-
 const ProSecNav = () => {
   const { menus, addTab, openKeys, selectedKeys, setOpenKeys, setSelectedKeys } = useGlobalStore(
-    (state) => ({
+    useShallow((state) => ({
       menus: state.menus,
       addTab: state.addTab,
       openKeys: state.openKeys,
       setOpenKeys: state.setOpenKeys,
       selectedKeys: state.selectedKeys,
       setSelectedKeys: state.setSelectedKeys,
-    }),
+    })),
   );
   const navigate = useNavigate();
   const { pathname } = useLocation();
